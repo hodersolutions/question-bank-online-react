@@ -1,0 +1,146 @@
+#question {
+	width: 100%;
+	height: 30vh;
+	margin: 5px;
+}
+
+#answerContainer {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.option-td {
+	width: 100%;
+}
+
+.option-text {
+	padding-right: 10px;
+}
+
+.option {
+	width: 100%;
+	height: 40px;
+}
+
+.header {
+	text-align: left;
+	padding-left: 5px;
+}
+
+.btn {
+	width: 100%;
+	margin: 5px;
+}
+
+#addQuestion {
+	padding: 50px 25px 0px 25px !important;	
+}
+
+.answer {
+	height: 30vh;
+	padding: 0px 5px 0px 5px;
+}
+
+#tabs{
+	background: #007b5e;
+    color: #eee;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #2980b9;
+    background-color: transparent;
+    border-color: transparent transparent #2980b9;
+    border-bottom: 2px solid !important;
+    font-size: 20px;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: black;
+    font-size: 20px;
+}
+
+.form-control:focus {
+  z-index: 2;
+  border-color: #3498db;
+  box-shadow: 1px 1px 1px rgba(52,152,219, 0.8) inset, 1px 1px 1px rgba(52,152,219, 0.8);
+}
+
+.qty_input{
+	margin-left: 5px;
+}
+
+.input-group {
+	display: block;
+}
+
+.fa {
+	color: white;
+}
+
+.inc-btn {
+	width:30px;
+	height: 30px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 66px;
+	height: 40px;
+	float:right;
+	margin-bottom: 15px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .0s;
+	transition: .0s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 24px;
+	width: 24px;
+	left: 8px;
+	bottom: 8px;
+	background-color: white;
+	-webkit-transition: .0s;
+	transition: .0s;
+  }
+  
+  input.success:checked + .slider {
+	background-color: #8bc34a;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
