@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddOption from './option/AddOption';
 import './CreateQuestion.css';
 
 class CreateQuestion extends Component {
@@ -82,30 +83,12 @@ class CreateQuestion extends Component {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="option-td option-text" align="center" valign="middle">
-                                                        <div className="form-group shadow-textarea">
-                                                            <textarea className="form-control option" id="option1Text" name="option1Text" placeholder="Option 1"></textarea>
-                                                        </div>
-                                                    </td>
-                                                    <td className="option-td" align="center" valign="middle">
-                                                        <label className="switch ">
-                                                            <input type="checkbox" id="option1" name="option1" className="success"/>
-                                                            <span className="slider"></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="option-td option-text" align="center" valign="middle">
-                                                        <div className="form-group shadow-textarea">
-                                                            <textarea className="form-control option" id="option2Text" name="option2Text" placeholder="Option 2"></textarea>
-                                                        </div>
-                                                    </td>
-                                                    <td className="option-td" align="center" valign="middle">
-                                                        <label className="switch ">
-                                                            <input type="checkbox" id="option2" name="option2" className="success"/>
-                                                            <span className="slider"></span>
-                                                        </label>
-                                                    </td>
+                                                    <td>
+                                                        <AddOption />
+                                                        <AddOption />
+                                                        <AddOption />
+                                                        <AddOption />
+                                                    </td>                                                    
                                                 </tr>
                                             </table>
                                         </div>
