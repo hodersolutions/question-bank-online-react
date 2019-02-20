@@ -8,11 +8,11 @@ import CreateQuestion from "../question/CreateQuestion";
 
 const Routes = () => (
   <Switch>
-        <Route exact path='/' component={Dashboard} />
-        <Route path='/question/:id' component={ShowQuestion} />
-        <Route path='/signin' component={SignIn} />
-        <Route path='/signup' component={SignUp} />
-        <Route path='/addquestion' component={CreateQuestion} />
+        <Route exact path='/' component={ Dashboard } />
+        <Route path='/question/:id' component={ ShowQuestion } />
+        <Route path='/signin' component={ SignIn } />
+        <Route path='/signup' component={ SignUp } />
+        <Route path='/question' component={ CreateQuestion } />
     </Switch>
 );
 

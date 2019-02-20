@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SignIn.css';
 import axios from 'axios';
+import API from '../common/APIHelper';
 
 class SignIn extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class SignIn extends Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault();
-		axios.post('http://localhost:5100/api/v1/auth/login', {
+		axios.post(API.URI + 'api/v1/auth/login', {
 				headers: {
 					'Content-Type': 'application/form-data'
 				},
@@ -29,13 +30,14 @@ class SignIn extends Component {
 			}
 		).then( function(response) {
 				console.log(response.data['auth_token']);
-				localStorage.setItem('auth-token', response.data['auth_token']);
+				localStorage.setItem('auth_token', response.data['auth_token']);
+				localStorage.setItem('username', response.data['username']);
 			}
 		)
 	}
     render() {
         return (
-            <div className="container" id="signInContainer">
+            <div className="container-fluid" id="signInContainer">
 			    <div className="wrap-login-style">
 				    <form method="POST" action="" onSubmit={this.handleSubmit} className="form-signin">
 					    <fieldset className="form-group">

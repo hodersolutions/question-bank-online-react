@@ -1,6 +1,6 @@
 .logo {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
 }
 
 .footer {
@@ -13,8 +13,8 @@
 
 .app-name {
   vertical-align: bottom;
-  font-size: 30px;
-  margin-left: 20px;
+  font-size: 23px;
+  margin-left: 10px;
 }
 
 .square-primary {
