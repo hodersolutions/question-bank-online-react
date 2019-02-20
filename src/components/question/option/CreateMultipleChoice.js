@@ -8,14 +8,14 @@ class CreateMultipleChoice extends Component {
         this.props.onContentChange({
             id: this.props.id,
             option: content,
-            is_correct: this.props.is_correct
+            is_correct_option: this.props.is_correct_option
         });
     }
     handleCheckChange = (e) => {
         this.props.onContentChange({
             id: this.props.id,
             option: this.props.option,
-            is_correct: e.target.checked
+            is_correct_option: e.target.checked
         });
     }
     render() {
@@ -46,7 +46,7 @@ class CreateMultipleChoice extends Component {
                         </td>
                         <td className="option-td" align="center" valign="top">
                             <label className="switch">
-                                <input type="checkbox" id="option" name="option" className="success" checked={ this.props.is_correct } onChange={ this.handleCheckChange }/>
+                                <input type="checkbox" id="option" name="option" className="success" checked={ this.props.is_correct_option } onChange={ this.handleCheckChange }/>
                                 <span className="slider"></span>
                             </label>
                         </td>
@@ -60,13 +60,13 @@ class CreateMultipleChoice extends Component {
 CreateMultipleChoice.defaultProps = {
     id: 0,
     option: '',
-    is_correct: false
+    is_correct_option: false
 } 
 
 CreateMultipleChoice.propTypes = {
     id: PropTypes.number.isRequired,
     option: PropTypes.string,
-    is_correct: PropTypes.bool
+    is_correct_option: PropTypes.bool
 } 
 
 export default CreateMultipleChoice;

@@ -22,12 +22,12 @@ class CreateQuestion extends Component {
             {
                 id: 1,
                 option: '', 
-                is_correct: false
+                is_correct_option: false
             },
             {
                 id: 2,
                 option: '', 
-                is_correct: false
+                is_correct_option: false
             }
         ]
     };    
@@ -50,7 +50,7 @@ class CreateQuestion extends Component {
         });
         const option = Object.assign({}, this.state.options[index]);
         option.option = content.option;
-        option.is_correct = content.is_correct;
+        option.is_correct_option = content.is_correct_option;
 
         const tamperable_options = Object.assign([], this.state.options);
         tamperable_options[index] = option;
@@ -75,7 +75,7 @@ class CreateQuestion extends Component {
             tamperable_options.push({
                 id: this.state.options.length + 1,
                 option: '', 
-                is_correct: false
+                is_correct_option: false
             });
             this.setState({
                 options: tamperable_options
@@ -175,7 +175,7 @@ class CreateQuestion extends Component {
                                                             <td>
                                                                 {
                                                                     this.state.options.map((optionObj, index) => {
-                                                                        return (<CreateMultipleChoice key={ index } id={ optionObj.id } option={ optionObj.option } is_correct={ optionObj.is_correct } onContentChange={ this.handleOptionContent }/>);
+                                                                        return (<CreateMultipleChoice key={ index } id={ optionObj.id } option={ optionObj.option } is_correct_option={ optionObj.is_correct_option } onContentChange={ this.handleOptionContent }/>);
                                                                     })
                                                                 }
                                                             </td>
