@@ -7,13 +7,13 @@ import ShowQuestion from "../question/ShowQuestion";
 import CreateQuestion from "../question/CreateQuestion";
 
 const Routes = () => (
-  <Switch>
-        <Route exact path='/' component={ Dashboard } />
-        <Route path='/question/:id' component={ ShowQuestion } />
-        <Route path='/signin' component={ SignIn } />
-        <Route path='/signup' component={ SignUp } />
-        <Route path='/question' component={ CreateQuestion } />
-    </Switch>
+	<Switch>
+    	<Route exact path='/' component={ Dashboard } />
+    	<Route exact path='/question/:id' component={ ShowQuestion } />
+    	<Route path='/signin' component={ SignIn } />
+    	<Route path='/signup' component={ SignUp } />
+      	<Route path='/question' component={ CreateQuestion } />                
+  	</Switch>
 );
 
 export default Routes;

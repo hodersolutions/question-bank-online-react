@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './SignIn.css';
 import axios from 'axios';
 import API from '../common/APIHelper';
+import JWT from '../common/JWT';
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends Component {
     constructor(props) {
@@ -29,9 +31,7 @@ class SignIn extends Component {
 				password: this.state.password
 			}
 		).then( function(response) {
-				console.log(response.data['auth_token']);
-				localStorage.setItem('auth_token', response.data['auth_token']);
-				localStorage.setItem('username', response.data['username']);
+				JWT.set_jwt(response.data['auth_token'], response.data['username']);
 			}
 		)
 	}
@@ -67,4 +67,4 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

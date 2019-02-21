@@ -2,6 +2,16 @@ import React from 'react'
 
 const ShowQuestion = (props) => {
     const id = props.match.params.id;
+    // axios.get(API.URI + '/api/v1/questions?id=' + values.id, {
+        //     mode: 'cors'            
+        // }
+        // ).then( function(response) {
+        //         localStorage.setItem('question', response.data);
+        //         this.setState({
+        //             question: response.data
+        //         });                
+        //     }
+        // );
   return (
     <div className="container-fluid section question-details">
         <div className="card z-depth-0">
