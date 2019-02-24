@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notifications from './Notifications';
-import QuestionList from '../question/QuestionList';
+import QuestionList from '../question/show/QuestionList';
 
 class Dashboard extends Component {
   render() {
