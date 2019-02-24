@@ -22,6 +22,7 @@ class SignIn extends Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault();
+		var call_status = true;
 		axios.post(API.URI + 'api/v1/auth/login', {
 				headers: {
 					'Content-Type': 'application/form-data'
@@ -33,7 +34,14 @@ class SignIn extends Component {
 		).then( function(response) {
 				JWT.set_jwt(response.data['auth_token'], response.data['username']);
 			}
-		)
+		).catch(error => {
+			call_status = false;
+			console.log(error);
+		});
+		if (call_status)
+			this.props.history.push("/question");
+		else
+			this.props.history.push("/signin");
 	}
     render() {
         return (

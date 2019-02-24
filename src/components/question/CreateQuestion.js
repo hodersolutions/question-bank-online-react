@@ -87,12 +87,13 @@ class CreateQuestion extends Component {
         e.preventDefault();        
 		axios.post(API.URI + 'api/v1/questions', {
 				headers: {
-                    'Content-Type': 'application/form-data',
+                    'Content-Type': 'application/json',
                     'token': localStorage.getItem('auth_token'),
                     'username': localStorage.getItem('username')
 				},
 				mode: 'cors',
-				params: this.state
+                question: this.state.question,
+                options: this.state.options
 			}
 		).then( function(response) {
 				console.log(response);
@@ -105,22 +106,17 @@ class CreateQuestion extends Component {
             <div className="container-fluid add-question">
                 <form action="/question" onSubmit={this.handleSubmit} method="POST">
                     <div className="row">
-                        <div className="col-md-9">
+                        <div className="col-md-8">
                             <div className="form-group">
                                 <h3 className="header">Add Question</h3>
                             </div>
                         </div>
-                        <div className="col-md-1 col-sm-2">
-                            <div className="form-group">
-                                <input className="btn btn-md btn-primary" id="validate" name="validate" type="button" value="Validate"/>
-                            </div>
-                        </div>
-                        <div className="col-md-1 col-sm-2">
+                        <div className="col-md-2 col-sm-2">
                             <div className="form-group">
                                 <input className="btn btn-md btn-success" id="submit" name="submit" type="submit" value="Upload"/>
                             </div>
                         </div>
-                        <div className="col-md-1 col-sm-2">
+                        <div className="col-md-2 col-sm-2">
                             <div className="form-group">
                                 <input className="btn btn-md btn-secondary" id="clear" name="clear" type="button" value="Clear"/>
                             </div>
