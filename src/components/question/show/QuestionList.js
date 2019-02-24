@@ -12,7 +12,7 @@ class QuestionList extends Component {
   render() {
     return (
     	<div className="question-list section">
-        	{
+      {
 				this.state.questions.map((questionObj, index) => {
 					return (<QuestionCard key={ index } module={ questionObj.module } title={ questionObj.title } author={ questionObj.author } />);
 				})
