@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Notifications from './Notifications';
 import QuestionList from '../question/show/QuestionList';
 
 class Dashboard extends Component {
@@ -10,8 +9,7 @@ class Dashboard extends Component {
             <div className="col s12 m6">
                 <QuestionList />
             </div>
-            <div className="col s12 m5 offset-m1">
-                <Notifications/>
+            <div className="col s12 m5 offset-m1">                
             </div>
         </div>
       </div>
