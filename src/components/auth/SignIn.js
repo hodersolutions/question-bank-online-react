@@ -3,6 +3,7 @@ import './SignIn.css';
 import axios from 'axios';
 import API from '../common/APIHelper';
 import JWT from '../common/JWT';
+import Notifications, {notify} from 'react-notify-toast';
 
 class SignIn extends Component {
 	_isMounted = false;
@@ -46,38 +47,26 @@ class SignIn extends Component {
 					if(response.data['status'] === 'success')
 						this.props.history.push('/');					
 					else {
-						const notify = Object.assign([], this.state.notify_list);
-            			notify.push({
-							type: 'error',
-							header: "Failed",
-							message: response.data['message'],
-							time_out: 3000
-            			});
-						this.setState({
-							notify_list: notify
-						});
+						let color = { background: '#0E1717', text: "#FFFFFF" };
+						notify.show(response.data['message'], 'error', 3000, color);
 					}
 				}
 			}
 		).catch(error => {			
 			if (error.response.status === 401) {
-				const notify = Object.assign([], this.state.notify_list);
-            	notify.push({
-					type: 'error',
-					header: "Failed",
-					message: error.response.data['message'],
-					time_out: 3000
-				});				
-				this.setState({
-					notify_list: notify
-				});
+				let color = { background: '#0E1717', text: "#FFFFFF" };
+				notify.show(error.response.data['message'], 'error', 3000, color);				
 			}
 		});
 	}
     render() {
+		const options = {
+			zIndex: 200, top: '50px'
+		}
         return (
 			<div>				
 				<div className="container-fluid" id="signInContainer">
+					<Notifications options={{ options }}/>
 					<div className="wrap-login-style">
 						<form method="POST" action="" onSubmit={this.handleSubmit} className="form-signin">
 							<fieldset className="form-group">
