@@ -4,7 +4,7 @@ import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
 import Dashboard from "../dashboard/Dashboard";
 import ShowQuestion from "../question/show/ShowQuestion";
-import CreateQuestion from "../question/CreateQuestion";
+import CreateQuestion from "../question/create/CreateQuestion";
 
 const Routes = () => (
 	<Switch>

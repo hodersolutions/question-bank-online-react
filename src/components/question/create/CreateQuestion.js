@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {TinyMCE} from '../ui-helpers/TinyMCE';
+import {TinyMCE} from '../../ui-helpers/TinyMCE';
 import CreateMultipleChoice from './option/CreateMultipleChoice';
-import QuestionType from '../common/Enums';
+import QuestionType from '../../common/Enums';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import axios from 'axios';
-import API from '../common/APIHelper';
+import API from '../../common/APIHelper';
 import './CreateQuestion.css';
+import Notifications, {notify} from 'react-notify-toast';
 
 class CreateQuestion extends Component {
     constructor(props) {
@@ -96,14 +97,28 @@ class CreateQuestion extends Component {
                 options: this.state.options
 			}
 		).then( function(response) {
-				console.log(response);
+                if(response.data['status'] === 'success') {                    
+                    notify.show(response.data['message'], 'success', 3000, 'green');
+                }					
+                else {
+                    notify.show(response.data['message'], 'error', 3000, 'red');
+                }
 			}
-		)
+		).catch(error => {			
+			if (error.response.status === 400 || error.response.status === 500) {
+				let color = { background: '#0E1717', text: "#FFFFFF" };
+				notify.show(error.response.data['message'], 'error', 3000, color);				
+			}
+		});
     };
     
     render() {
+        const options = {
+			zIndex: 200, top: '50px'
+		}
         return (
             <div className="container-fluid add-question">
+                <Notifications options={{ options }}/>
                 <form action="/question" onSubmit={this.handleSubmit} method="POST">
                     <div className="row">
                         <div className="col-md-8">

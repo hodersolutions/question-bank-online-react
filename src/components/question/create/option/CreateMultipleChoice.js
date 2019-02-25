@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {TinyMCE} from '../../ui-helpers/TinyMCE';
+import {TinyMCE} from '../../../ui-helpers/TinyMCE';
 import './CreateMultipleChoice.css';
 
 class CreateMultipleChoice extends Component {
