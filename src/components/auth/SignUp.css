@@ -40,14 +40,10 @@
     1px 1px 1px rgba(40, 167, 69, 0.8);
 }
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  margin-bottom: -1px;  
 }
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  margin-bottom: 10px;  
 }
 #notaMember {
   margin-top: 10px;

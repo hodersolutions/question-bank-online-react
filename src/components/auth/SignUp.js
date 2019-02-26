@@ -44,6 +44,7 @@ class SignUp extends Component {
                                     name="username"
                                     required=""
                                     type="text"
+                                    autoComplete="username"
                                     onChange={this.handleChange}
                                     value={this.state.username}
                                 />
@@ -56,6 +57,7 @@ class SignUp extends Component {
                                     name="email"
                                     required=""
                                     type="text"
+                                    autoComplete="username-email"
                                     onChange={this.handleChange}
                                     value={this.state.email}
                                 />
@@ -68,6 +70,7 @@ class SignUp extends Component {
                                     name="password"
                                     required=""
                                     type="password"
+                                    autoComplete="new-password"
                                     onChange={this.handleChange}
                                     value={this.state.password}
                                     />
@@ -80,6 +83,7 @@ class SignUp extends Component {
                                     name="confirm_password"
                                     required=""
                                     type="password"
+                                    autoComplete="new-password"
                                     onChange={this.handleChange}
                                     value={this.state.confirm_password}
                                 />
