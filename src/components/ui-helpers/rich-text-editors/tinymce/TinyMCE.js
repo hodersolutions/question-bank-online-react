@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Editor} from '@tinymce/tinymce-react';
+import '../../node_modules/trumbowyg/dist/plugins/table/trumbowyg.table';
 
 export class TinyMCE extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export class TinyMCE extends Component {
         }
         return (
             <div id="richTextEditor" style={ style }>
-                <Editor initialValue={ this.props.content }
+                <Editor initialValue=''
                     apiKey={ this.state.apiKey }
                     init={{
                         plugins: "preview fullpage powerpaste searchreplace autolink image code directionality advcode fullscreen image link media codesample table charmap hr anchor toc insertdatetime advlist lists tinymcespellchecker a11ychecker imagetools textpattern help",

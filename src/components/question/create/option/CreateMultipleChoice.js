@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {TinyMCE} from '../../../ui-helpers/TinyMCE';
 import './CreateMultipleChoice.css';
+import { QuillEditor } from '../../../ui-helpers/rich-text-editors/quill/QuillEditor';
 
 class CreateMultipleChoice extends Component {
     handleRichEditorContent = (content) => {
@@ -20,7 +20,7 @@ class CreateMultipleChoice extends Component {
     }
     render() {
         const option_style = {
-            'padding': '0px 15px 15px 0px',
+            'padding': '0px 15px 15px 5px',
             'verticalAlign': 'middle',
             'fontWeight': '600'
         }
@@ -29,8 +29,11 @@ class CreateMultipleChoice extends Component {
             'verticalAlign': 'middle',
             'fontWeight': '600'
         }
+        const option_padding = {
+            'marginBottom': '20px'
+        }
         return (
-            <table className="container-fluid">
+            <table className="container-fluid" style={ option_padding }>
                 <tbody>
                     <tr>
                         <td style={ option_style }>
@@ -41,8 +44,8 @@ class CreateMultipleChoice extends Component {
                         </td>
                     </tr>
                     <tr>
-                        <td className="option-td option-text" align="center" valign="middle">
-                            <TinyMCE content={ this.props.option } onContentChange={ this.handleRichEditorContent }/>    
+                        <td className="option-td option-text" valign="middle">
+                            <QuillEditor onContentChange={ this.handleRichEditorContent }/>
                         </td>
                         <td className="option-td" align="center" valign="top">
                             <label className="switch">

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import './OptionCard.css';
+import renderHTML from 'react-render-html';
 
-class OptionCard extends Component {    
-    handleCheckChange = (e) => {
-        this.props.onContentChange({
-            id: this.props.id,
-            option: this.props.option,
-            is_correct_option: e.target.checked
-        });
-    }
+class OptionCard extends Component {   
     render() {
         const option_style = {
             'padding': '0px 15px 15px 0px',
@@ -37,7 +31,7 @@ class OptionCard extends Component {
                         </td>
                         <td className="option-td" align="center" valign="top">
                             <label className="switch">
-                                <input type="checkbox" id="option" name="option" className="success" checked={ this.props.is_correct_option } onChange={ this.handleCheckChange }/>
+                                { renderHTML(this.props.option) }
                                 <span className="slider"></span>
                             </label>
                         </td>
@@ -47,17 +41,5 @@ class OptionCard extends Component {
     )
   }
 }
-
-OptionCard.defaultProps = {
-    id: 0,
-    option: '',
-    is_correct_option: false
-} 
-
-OptionCard.propTypes = {
-    id: PropTypes.number.isRequired,
-    option: PropTypes.string,
-    is_correct_option: PropTypes.bool
-} 
 
 export default OptionCard;

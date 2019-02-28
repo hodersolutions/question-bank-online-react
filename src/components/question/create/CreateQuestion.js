@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {TinyMCE} from '../../ui-helpers/TinyMCE';
 import CreateMultipleChoice from './option/CreateMultipleChoice';
 import QuestionType from '../../common/Enums';
 import Tab from 'react-bootstrap/Tab';
@@ -8,6 +7,7 @@ import axios from 'axios';
 import API from '../../common/APIHelper';
 import './CreateQuestion.css';
 import Notifications, {notify} from 'react-notify-toast';
+import { QuillEditor } from '../../ui-helpers/rich-text-editors/quill/QuillEditor';
 
 class CreateQuestion extends Component {
     constructor(props) {
@@ -139,8 +139,8 @@ class CreateQuestion extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md">
-                            <div className="form-group">
-                                <TinyMCE key={ this.state.id } content={ this.state.question } onContentChange={ this.handleRichEditorContent }/>
+                            <div className="form-group">                                
+                                <QuillEditor key={ this.state.id } onContentChange={ this.handleRichEditorContent }/>                                
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@ class CreateQuestion extends Component {
                     </div>
                     <div className="row">
                         <div className="col-lg">
-                            <div className="container-fluid">
+                            <div className="container-fluid answer-group-container">
                                 <div className="row">
                                     <div className="col-md">
                                         <Tabs id="controlled-tab-example" activeKey={this.state.key} onSelect={ this.handleTabChange }>
