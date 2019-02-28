@@ -3,13 +3,14 @@ import axios from 'axios';
 import API from '../../common/APIHelper';
 import OptionCard from './option/OptionCard';
 import renderHTML from 'react-render-html';
+import './ShowQuestion.css';
 
 class ShowQuestion extends Component {
     _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
-            id: 5,
+            id: 3,
             question: '',
             options: []    
         }
@@ -34,54 +35,52 @@ class ShowQuestion extends Component {
                 this.setState({
                     question: response.data['question']['question'],
                     options: option_list
-                });                
-                console.log(option_list);
+                });
             }
         });
     }
     render() {
         return (
             <div className="container-fluid add-question">                
-                <form action="/question/show" onSubmit={this.handleSubmit} method="POST">                    
+                <form action="/question/show" onSubmit={this.handleSubmit} method="POST">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div className="form-group">
+                                <div><b><u>Question / Problem Statement:</u></b></div>
+                            </div>
+                        </div>
+                    </div>                    
                     <div className="row">
                         <div className="col-md">
-                            <div className="form-group">                                
-                                { renderHTML(this.state.question) }
+                            <div className="form-group">
+                                <div className="container-fluid question-card-border">
+                                    <div className="row">
+                                        <div className="col-*" valign="middle">
+                                            { renderHTML(this.state.question) }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-4">
                             <div className="form-group">
-                                <h4 className="header">Answer</h4>
+                                <div><b><u>Options:</u></b></div>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-lg">
-                            <div className="container-fluid answer-group-container">
-                                <div className="row">
-                                    <div className="col-md">
-                                        <table className="answer-container" border="0">
-                                            <tbody>                                                
-                                                <tr>
-                                                    <td>
-                                                        {
-                                                            this.state.options.map((optionObj, index) => {
-                                                                return (<OptionCard key={ index } id={ index } option_id={optionObj.id} option={ optionObj.option } is_correct_option={ optionObj.is_correct_option } />);
-                                                            })
-                                                        }                                                        
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>                                        
-                                    </div>
-                                </div>
-                            </div>
+                            {
+                                this.state.options.map((optionObj, index) => {
+                                    return (<OptionCard key={ index } id={ index } option_id={optionObj.id} option={ optionObj.option } is_correct_option={ optionObj.is_correct_option } />);
+                                })
+                            }                                                                            
                         </div>            
                     </div>    
                 </form>
-        </div>            
+            </div>            
         )
     };
 }

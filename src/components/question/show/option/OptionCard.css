@@ -7,6 +7,12 @@
   margin-bottom: 15px;
 }
 
+.option-card-border {
+  background-color: #EAFAF1;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px
+}
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
