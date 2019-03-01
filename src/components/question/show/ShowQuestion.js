@@ -39,6 +39,22 @@ class ShowQuestion extends Component {
             }
         });
     }
+
+    handleOptionContent = (content) => {
+        const index = this.state.options.findIndex((optionObj) => {
+            return (optionObj.id === content.id);
+        });
+        const option = Object.assign({}, this.state.options[index]);
+        option.option = content.option;
+        option.is_correct_option = content.is_correct_option;
+
+        const tamperable_options = Object.assign([], this.state.options);
+        tamperable_options[index] = option;
+        this.setState({
+            options: tamperable_options
+        })
+    };
+
     render() {
         return (
             <div className="container show-question">                
@@ -74,7 +90,7 @@ class ShowQuestion extends Component {
                         <div className="col-lg">
                             {
                                 this.state.options.map((optionObj, index) => {
-                                    return (<OptionCard key={ index } id={ index } option_id={optionObj.id} option={ optionObj.option } is_correct_option={ optionObj.is_correct_option } />);
+                                    return (<OptionCard key={ index } id={ index } option_id={optionObj.id} option={ optionObj.option } is_correct_option={ optionObj.is_correct_option }  onContentChange={ this.handleOptionContent }/>);
                                 })
                             }                                                                            
                         </div>            

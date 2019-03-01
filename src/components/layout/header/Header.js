@@ -12,7 +12,7 @@ const Header = () => {
                 src={require("../../../static/images/logo/logo.png")}
                 alt="Question Bank"
                 className="logo"
-              /> <span className="app-name">QUESTION BANK</span>
+              /> <span className="app-name">Q-bank</span>
             </Link>
             <button
               className="navbar-toggler"
