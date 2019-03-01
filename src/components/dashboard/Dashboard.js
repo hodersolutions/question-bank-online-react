@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import QuestionList from '../question/show/QuestionList';
+import './Dashboard.css';
 
 class Dashboard extends Component {
   render() {

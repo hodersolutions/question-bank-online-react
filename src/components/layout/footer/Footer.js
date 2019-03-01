@@ -7,7 +7,7 @@ class Footer extends Component {
     return (
       <div>
         <footer id="myFooter">
-          <div className="container-fluid">
+          <div className="container">
             <div className="row">
               <div className="col-sm-3 myCols">
                 <h6>Get started</h6>

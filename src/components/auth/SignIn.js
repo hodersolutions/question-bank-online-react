@@ -65,7 +65,7 @@ class SignIn extends Component {
 		}
         return (
 			<div>				
-				<div className="container-fluid" id="signInContainer">
+				<div className="container" id="signInContainer">
 					<Notifications options={{ options }}/>
 					<div className="wrap-login-style">
 						<form method="POST" action="" onSubmit={this.handleSubmit} className="form-signin">

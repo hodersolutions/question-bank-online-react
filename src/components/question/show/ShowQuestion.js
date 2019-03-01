@@ -10,7 +10,7 @@ class ShowQuestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: 9,
+            id: 2,
             question: '',
             options: []    
         }
@@ -41,19 +41,19 @@ class ShowQuestion extends Component {
     }
     render() {
         return (
-            <div className="container-fluid show-question">                
+            <div className="container show-question">                
                 <form action="/question/show" onSubmit={this.handleSubmit} method="POST">
                     <div className="row">
                         <div className="col-md-7">
                             <div className="form-group">
-                                <div><b><u>Question / Problem Statement:</u></b></div>
+                                <div><b><u>Question/Problem Statement</u></b></div>
                             </div>
                         </div>
                     </div>                    
                     <div className="row">
                         <div className="col-md">
                             <div className="form-group">
-                                <div className="container-fluid question-card-border">
+                                <div className="container question-card-border">
                                     <div className="row">
                                         <div className="col-*" valign="middle">
                                             { renderHTML(this.state.question) }
@@ -66,7 +66,7 @@ class ShowQuestion extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="form-group">
-                                <div><b><u>Options:</u></b></div>
+                                <div><b><u>Options</u></b></div>
                             </div>
                         </div>
                     </div>

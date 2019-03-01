@@ -24,7 +24,7 @@ class SignUp extends Component {
       }
     render() {
         return (
-            <div className="container-fluid" id="signUpContainer">
+            <div className="container" id="signUpContainer">
                 <div className="wrap-login-style">
                     <form method="POST" onSubmit={this.handleSubmit} className="form-signin">
                         <fieldset className="form-group">

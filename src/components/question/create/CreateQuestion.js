@@ -117,7 +117,7 @@ class CreateQuestion extends Component {
 			zIndex: 200, top: '50px'
 		}
         return (
-            <div className="container-fluid add-question">
+            <div className="container add-question">
                 <Notifications options={{ options }}/>
                 <form action="/question" onSubmit={this.handleSubmit} method="POST">
                     <div className="row">
@@ -153,7 +153,7 @@ class CreateQuestion extends Component {
                     </div>
                     <div className="row">
                         <div className="col-lg">
-                            <div className="container-fluid answer-group-container">
+                            <div className="container answer-group-container">
                                 <div className="row">
                                     <div className="col-md">
                                         <Tabs id="controlled-tab-example" activeKey={this.state.key} onSelect={ this.handleTabChange }>

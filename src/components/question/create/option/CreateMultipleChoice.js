@@ -33,7 +33,7 @@ class CreateMultipleChoice extends Component {
             'marginBottom': '20px'
         }
         return (
-            <table className="container-fluid" style={ option_padding }>
+            <table className="container" style={ option_padding }>
                 <tbody>
                     <tr>
                         <td style={ option_style }>
