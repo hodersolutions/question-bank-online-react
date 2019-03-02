@@ -6,7 +6,7 @@ import Dashboard from "../dashboard/Dashboard";
 import ShowQuestion from "../question/show/ShowQuestion";
 import CreateQuestion from "../question/create/CreateQuestion";
 import ForgotPassword from "../auth/ForgotPassword";
-import CreateModule from '../module/CreateModule';
+import CreateModule from '../module/create/CreateModule';
 
 const Routes = () => (
 	<Switch>

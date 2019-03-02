@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import API from '../common/APIHelper';
+import API from '../../common/APIHelper';
 import './CreateModule.css';
 import Notifications, {notify} from 'react-notify-toast';
 

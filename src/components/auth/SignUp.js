@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './SignUp.css';
+import axios from 'axios';
+import API from '../common/APIHelper';
+import Notifications, {notify} from 'react-notify-toast';
 
 class SignUp extends Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -12,19 +16,58 @@ class SignUp extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-      }
-      handleChange = (e) => {
+    }
+    handleChange = (e) => {
         this.setState({
           [e.target.name]: e.target.value
         });
-      }
-      handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state);
-      }
+    }
+    
+    componentDidMount() {
+		this._isMounted = true;
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
+	}
+    handleSubmit = (e) => {
+		e.preventDefault();
+		axios.post(API.URI + 'api/v1/users', {
+				headers: {
+                    'Content-Type': 'application/json',
+                    'token': localStorage.getItem('auth_token'),
+                    'username': localStorage.getItem('username')
+				},
+				mode: 'cors',
+				username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+			}
+		).then( response => {
+                if (this._isMounted) {
+                    if(response.data['status'] === 'success') {                    
+                        this.props.history.push('/signin');
+                    }					
+                    else {
+                        notify.show(response.data['message'], 'error', 3000, 'red');
+                    }
+                }
+            }
+        ).catch(error => {			
+            if (error.response.status === 400 || error.response.status === 500) {
+                let color = { background: '#0E1717', text: "#FFFFFF" };
+                notify.show(error.response.data['message'], 'error', 3000, color);				
+            }
+        });
+    }
+
     render() {
+        const options = {
+			zIndex: 200, top: '50px'
+		}
         return (
             <div className="container" id="signUpContainer">
+                <Notifications options={{ options }}/>
                 <div className="wrap-login-style">
                     <form method="POST" onSubmit={this.handleSubmit} className="form-signin">
                         <fieldset className="form-group">
