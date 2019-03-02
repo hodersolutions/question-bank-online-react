@@ -9,16 +9,18 @@ class Dashboard extends Component {
     }
     return (
       <div className="container">
-        <div className="row">
-            <div className="col s5 m5 col-centered wrapper">
+          <div className="row">
+            <div className="col col-centered wrapper">
                 <h3 className="border-bottom mb-5 h3 mb-5 font-header">Recent Modules / Topics</h3>
                 <ModuleList count='5' creator_id='' />
             </div>
-            <div className="col s5 m5 col-centered wrapper">
+          </div>
+          <div className="row">
+            <div className="col col-centered wrapper">
                 <h3 className="border-bottom mb-5 h3 mb-5 font-header">Recent Exams</h3>
                 <p style={ style }>No Exams added recently...</p>
             </div>            
-        </div>
+          </div>
       </div>
     )
   }
