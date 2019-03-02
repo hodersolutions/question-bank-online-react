@@ -207,7 +207,7 @@ class CreateQuestion extends Component {
                         </div>            
                     </div>    
                 </form>
-        </div>
+            </div>
     )   
   }
 }
