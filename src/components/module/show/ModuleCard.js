@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { Card } from 'react-bootstrap';
-import './QuestionCard.css';
+import './ModuleCard.css';
 
-class QuestionCard extends Component {
+class ModuleCard extends Component {
     render() {
         return (
             <div className='card-container'>
@@ -11,7 +11,7 @@ class QuestionCard extends Component {
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
                         <p>
-                            {' '}{this.props.title}{' '}
+                            {' '}{this.props.description}{' '}
                         </p>
                         <footer className="blockquote-footer">
                             <cite title="Source Title">{this.props.author}</cite>
@@ -24,4 +24,4 @@ class QuestionCard extends Component {
     }
 }
 
-export default QuestionCard;
+export default ModuleCard;

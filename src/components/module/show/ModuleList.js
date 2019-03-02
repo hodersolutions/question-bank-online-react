@@ -1,25 +1,57 @@
 import React, { Component } from 'react';
-import QuestionCard from './QuestionCard';
+import axios from 'axios';
+import API from '../../common/APIHelper';
+import ModuleCard from './ModuleCard';
 
-class QuestionList extends Component {
+class ModuleList extends Component {
+	_isMounted = false;
 	state = {
-		questions: [
-			{module: "Python", title: "What are _ and __ used for in python?", author: "Roger Federer"},
-			{module: "CSS", title: "What are uses of bootstrap?", author: "Rafael Nadal"},
-			{module: "HTML", title: "What is the full form of HTML?", author: "Novak Djokovic"}
-		]		
+		modules: [],
+		count: this.props.count,
+		creator_id: this.props.creator_id	
 	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
+	}
+	
+	componentDidMount() {
+		this._isMounted = true;
+		var full_uri = API.URI + 'api/v1/modules'; 
+		if (this.state.creator_id === '')
+			full_uri = full_uri + '/latest/' + this.state.count
+		else
+			full_uri = full_uri + '/creator/' + this.state.creator_id +'/latest/' + this.state.count
+
+		axios.get(full_uri, {
+				headers: {
+						'Content-Type': 'application/json'
+				},
+				mode: 'cors'    
+		}).then( response => {								
+				if (this._isMounted) {
+					console.log(response.data);
+					var module_list = Object.keys(response.data['modules']).map(function (i) {
+						return response.data['modules'][i];
+					});
+					this.setState({
+						modules: module_list
+					});
+				}
+		});
+	}
+
   render() {
     return (
-    	<div className="question-list section">
-      {
-				this.state.questions.map((questionObj, index) => {
-					return (<QuestionCard key={ index } module={ questionObj.module } title={ questionObj.title } author={ questionObj.author } />);
-				})
-			}
+    	<div className="module-list section">
+      	{
+			this.state.modules.map((moduleObj, index) => {
+				return (<ModuleCard key={ index } module={ moduleObj.module } description={ moduleObj.description } author={ moduleObj.creator_id } />);
+			})
+		}
       	</div>
     )
   }
 }
 
-export default QuestionList;
+export default ModuleList;
