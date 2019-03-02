@@ -30,7 +30,6 @@ class ModuleList extends Component {
 				mode: 'cors'    
 		}).then( response => {								
 				if (this._isMounted) {
-					console.log(response.data);
 					var module_list = Object.keys(response.data['modules']).map(function (i) {
 						return response.data['modules'][i];
 					});
@@ -42,8 +41,11 @@ class ModuleList extends Component {
 	}
 
   render() {
+	const style = {
+		'margin': '0px 0px 25px 0px' 
+	}
     return (
-    	<div className="module-list section">
+    	<div style={ style }>
       	{
 			this.state.modules.map((moduleObj, index) => {
 				return (<ModuleCard key={ index } module={ moduleObj.module } description={ moduleObj.description } author={ moduleObj.creator_id } />);
