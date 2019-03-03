@@ -7,23 +7,21 @@ import ShowQuestion from "../question/show/ShowQuestion";
 import CreateQuestion from "../question/create/CreateQuestion";
 import ForgotPassword from "../auth/ForgotPassword";
 import CreateModule from '../module/create/CreateModule';
-import Authenticate from '../auth/JWTAuthentication';
 import NotFound from '../common/NotFound'
-
-const AuthenticatedCreateModule = Authenticate(CreateModule);
-const AuthenticatedShowQuestion = Authenticate(ShowQuestion);
-const AuthenticatedCreateQuestion = Authenticate(CreateQuestion);
+import JWTAuthenticate from '../auth/JWTAuthentication';
 
 const Routes = () => (
 	<Switch>	
-    	<Route exact path='/' component={ Dashboard } />
-		<Route exact path='/signin' component={ SignIn } />
-    	<Route exact path='/signup' component={ SignUp } />
-		<Route exact path='/module' component={ AuthenticatedCreateModule } />
-      	<Route exact path='/question' component={ AuthenticatedCreateQuestion } />
-		<Route exact path='/question/show' component={ AuthenticatedShowQuestion } />		
-		<Route exact path='/forgot/password' component={ ForgotPassword } />
-		<Route path='*' component={ NotFound } />
+    	<Route exact path='/' render={ props=> <Dashboard {...props}/> } />
+		<Route exact path='/signin' render={ props=> <SignIn {...props}/> } />
+    	<Route exact path='/signup' render={ props=> <SignUp {...props}/> } />
+		<Route exact path='/forgot/password' render={ props=> <ForgotPassword {...props}/> } />
+
+		<JWTAuthenticate exact path='/module' component={ CreateModule } />
+      	<JWTAuthenticate exact path='/question' component={ CreateQuestion } />
+		<JWTAuthenticate exact path='/question/show' component={ ShowQuestion } />
+
+		<Route path='*' component={ NotFound } />	
 	</Switch>
 );
 

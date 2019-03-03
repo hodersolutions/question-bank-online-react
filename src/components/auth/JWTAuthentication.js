@@ -1,35 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import JWT from '../common/JWT';
 import axios from 'axios';
 import API from '../common/APIHelper';
-import SignIn from "./SignIn";
+import Loading from '../common/Loading';
 
-export default function Authenticate(WrappedComponent) {
-    return class extends Component {
-        render() {
-            const jwt = JWT.get_jwt();
-            if(jwt['token'] === null || jwt['username'] === null) {
-                this.props.history.push('/signin');
-                return <SignIn />;
+const JWTAuthenticate = ({component: Component, ...rest}) => {    
+    const signin_route = <Route {...rest} render={props => ( <Redirect to={{
+            pathname: '/signin'
+        }}/>
+    )}/>
+
+    const protected_route = <Route {...rest} render={props => ( ( <Component {...props} /> ))}/>
+
+    const loading = <Loading />
+
+    const jwt = JWT.get_jwt();
+    
+    if(jwt['token'] === null || jwt['username'] === null){
+        return signin_route;
+    }
+    else {
+        axios.get(API.URI + 'api/v1/token/validate', {
+            headers: {
+                'Content-Type': 'application/json',
+                token: jwt['token'],
+                username: jwt['username']
+            },
+            mode: 'cors'
+        }).then( response => {
+            if(response.data['status'] === 'success'){
+                return protected_route
+            }                                            
+            else {
+                JWT.remove_jwt();
+                return signin_route;
             }
-            else {         
-                axios.get(API.URI + 'api/v1/token/validate', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        token: jwt['token'],
-                        username: jwt['username']
-                    },
-                    mode: 'cors'
-                }).then( response => {
-                    if(response.data['status'] === 'success')
-                        return <WrappedComponent {...this.props}/>;                    
-                    else
-                        return <SignIn />;
-                }).catch(err => {
-                    JWT.remove_jwt();
-                    return <SignIn />;
-                })
-            }
-        }
-    };
+        }).catch(err => {
+            JWT.remove_jwt();
+            return signin_route;
+        })
+    }
+    return loading;
 }
+
+export default JWTAuthenticate;

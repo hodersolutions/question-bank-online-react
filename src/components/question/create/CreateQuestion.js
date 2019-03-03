@@ -88,7 +88,7 @@ class CreateQuestion extends Component {
 		axios.post(API.URI + 'api/v1/questions', {
 				headers: {
                     'Content-Type': 'application/json',
-                    'token': localStorage.getItem('auth_token'),
+                    'token': localStorage.getItem('token'),
                     'username': localStorage.getItem('username')
 				},
 				mode: 'cors',

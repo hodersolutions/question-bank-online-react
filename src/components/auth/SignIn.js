@@ -7,8 +7,8 @@ import Notifications, {notify} from 'react-notify-toast';
 
 class SignIn extends Component {
 	_isMounted = false;
-    constructor(props) {
-		super(props);
+    constructor() {
+		super();
 		this.state = {
 			email: '',
 			password: '',
