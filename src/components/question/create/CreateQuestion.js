@@ -38,7 +38,6 @@ class CreateQuestion extends Component {
     }
     
     handleRichEditorContent = (content) => {
-        console.log(content);
         this.setState(
             {
                 question: content
