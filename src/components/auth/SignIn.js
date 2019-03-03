@@ -35,7 +35,8 @@ class SignIn extends Component {
 		e.preventDefault();
 		axios.post(API.URI + 'api/v1/auth/login', {
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					'Accept': 'text/plain'
 				},
 				mode: 'cors',
 				email: this.state.email,
@@ -52,12 +53,7 @@ class SignIn extends Component {
 					}
 				}
 			}
-		).catch(error => {			
-			if (error.response.status === 401) {
-				let color = { background: '#0E1717', text: "#FFFFFF" };
-				notify.show(error.response.data['message'], 'error', 3000, color);				
-			}
-		});
+		);
 	}
     render() {
 		const options = {

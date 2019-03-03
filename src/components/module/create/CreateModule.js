@@ -5,6 +5,7 @@ import './CreateModule.css';
 import Notifications, {notify} from 'react-notify-toast';
 
 class CreateModule extends Component {
+    _isMounted = false;
     state = {
         module: '',
         parent_module_id: '',
@@ -19,6 +20,14 @@ class CreateModule extends Component {
 		});
     }
     
+    componentWillUnmount() {
+		this._isMounted = false;
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
     handleSubmit = (e) => {
 		e.preventDefault();
 		axios.post(API.URI + 'api/v1/modules', {
