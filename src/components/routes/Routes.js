@@ -7,19 +7,21 @@ import ShowQuestion from "../question/show/ShowQuestion";
 import CreateQuestion from "../question/create/CreateQuestion";
 import ForgotPassword from "../auth/ForgotPassword";
 import CreateModule from '../module/create/CreateModule';
-import NotFound from '../common/NotFound'
-import JWTAuthenticate from '../auth/JWTAuthentication';
+import NotFound from '../common/notfound/NotFound'
+import requireAuth from '../auth/JWTAuthentication';
+import UserDashboard from '../dashboard/UserDashboard';
 
 const Routes = () => (
-	<Switch>	
-    	<Route exact path='/' render={ props=> <Dashboard {...props}/> } />
+	<Switch>    	
 		<Route exact path='/signin' render={ props=> <SignIn {...props}/> } />
     	<Route exact path='/signup' render={ props=> <SignUp {...props}/> } />
 		<Route exact path='/forgot/password' render={ props=> <ForgotPassword {...props}/> } />
+		<Route exact path='/user/home' render={ props=> <UserDashboard {...props}/> } />
 
-		<JWTAuthenticate exact path='/module' component={ CreateModule } />
-      	<JWTAuthenticate exact path='/question' component={ CreateQuestion } />
-		<JWTAuthenticate exact path='/question/show' component={ ShowQuestion } />
+		<Route exact path='/' component={ requireAuth(Dashboard) } />
+		<Route exact path='/module' component={ requireAuth(CreateModule) } />
+      	<Route exact path='/question' component={ requireAuth(CreateQuestion) } />
+		<Route exact path='/question/show' component={ requireAuth(ShowQuestion) } />
 
 		<Route path='*' component={ NotFound } />	
 	</Switch>

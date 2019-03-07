@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import ModuleList from '../module/show/ModuleList';
+// import ModuleList from '../module/show/ModuleList';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './Dashboard.css';
+import './UserDashboard.css';
 
-class Dashboard extends Component {
+class UserDashboard extends Component {
   render() {
     const style = {
       'margin': '0px 0px 25px 15px' 
@@ -13,7 +14,10 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col col-centered wrapper">
                 <h3 className="border-bottom mb-5 h3 mb-5 font-header">Recent Modules / Topics</h3>
-                <ModuleList modules={this.props.modules}  />                
+                {/* <ModuleList modules={this.props.modules}  /> */}
+                <Link to="/module" className="nav-item nav-link">                    
+                    <span>Add Module</span>
+                </Link>
             </div>
           </div>
           <div className="row">
@@ -33,4 +37,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(UserDashboard);

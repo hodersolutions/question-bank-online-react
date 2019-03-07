@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import API from '../../common/APIHelper';
 import './CreateModule.css';
-import Notifications, {notify} from 'react-notify-toast';
+import Notifications from 'react-notify-toast';
+import { connect } from 'react-redux';
+import { createModule } from '../../../store/actions/moduleActions';
 
 class CreateModule extends Component {
     _isMounted = false;
@@ -29,34 +29,8 @@ class CreateModule extends Component {
     }
 
     handleSubmit = (e) => {
-		e.preventDefault();
-		axios.post(API.URI + 'api/v1/modules', {
-				headers: {
-                    'Content-Type': 'application/json',
-                    'token': localStorage.getItem('token'),
-                    'username': localStorage.getItem('username')
-				},
-				mode: 'cors',
-				module: this.state.module,
-                parent_module_id: (this.state.parent_module_id === '')? null : this.state.parent_module_id,
-                is_active: true,
-                description: this.state.description,
-                creator_id: this.state.creator_id
-			}
-		).then( function(response) {
-                if(response.data['status'] === 'success') {                    
-                    notify.show(response.data['message'], 'success', 3000, 'green');
-                }					
-                else {
-                    notify.show(response.data['message'], 'error', 3000, 'red');
-                }
-            }
-        ).catch(error => {			
-            if (error.response.status === 400 || error.response.status === 500) {
-                let color = { background: '#0E1717', text: "#FFFFFF" };
-                notify.show(error.response.data['message'], 'error', 3000, color);				
-            }
-        });
+        e.preventDefault();
+        this.props.createModule(this.state);	
     }
 
     render() {
@@ -114,4 +88,10 @@ class CreateModule extends Component {
     }
 }
 
-export default CreateModule;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createModule: (module) => dispatch(createModule(module))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateModule);

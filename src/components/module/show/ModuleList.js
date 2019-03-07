@@ -3,12 +3,14 @@ import axios from 'axios';
 import API from '../../common/APIHelper';
 import ModuleCard from './ModuleCard';
 
+const COUNT = 5, CREATOR_ID = ''
+
 class ModuleList extends Component {
 	_isMounted = false;
 	state = {
 		modules: [],
-		count: this.props.count,
-		creator_id: this.props.creator_id	
+		count: COUNT,
+		creator_id: CREATOR_ID
 	}
 
 	componentWillUnmount() {

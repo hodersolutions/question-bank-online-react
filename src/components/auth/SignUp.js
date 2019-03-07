@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './SignUp.css';
-import axios from 'axios';
-import API from '../common/APIHelper';
-import Notifications, {notify} from 'react-notify-toast';
+import Notifications from 'react-notify-toast';
+import { connect } from 'react-redux';
+import { createUser } from '../../store/actions/userActions';
 
 class SignUp extends Component {
     _isMounted = false;
@@ -31,33 +31,11 @@ class SignUp extends Component {
 		this._isMounted = false;
 	}
     handleSubmit = (e) => {
-		e.preventDefault();
-		axios.post(API.URI + 'api/v1/users', {
-				headers: {
-                    'Content-Type': 'application/json',
-                    'token': localStorage.getItem('token'),
-                    'username': localStorage.getItem('username')
-				},
-				mode: 'cors',
-				username: this.state.username,
-                email: this.state.email,
-                password: this.state.password
-			}
-		).then( response => {
-                if (this._isMounted) {
-                    if(response.data['status'] === 'success') {                    
-                        this.props.history.push('/signin');
-                    }					
-                    else {
-                        notify.show(response.data['message'], 'error', 3000, 'red');
-                    }
-                }
-            }
-        ).catch(error => {			
-            if (error.response.status === 400 || error.response.status === 500) {
-                let color = { background: '#0E1717', text: "#FFFFFF" };
-                notify.show(error.response.data['message'], 'error', 3000, color);				
-            }
+        e.preventDefault();        
+        this.props.createUser({
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password
         });
     }
 
@@ -152,4 +130,10 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createUser: (user) => dispatch(createUser(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignUp);

@@ -1,47 +1,47 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import JWT from '../common/JWT';
-import axios from 'axios';
-import API from '../common/APIHelper';
-import Loading from '../common/Loading';
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { validateToken } from '../../store/actions/authAction';
+import JWT from '../../components/common/JWT';
 
-const JWTAuthenticate = ({component: Component, ...rest}) => {    
-    const signin_route = <Route {...rest} render={props => ( <Redirect to={{
-            pathname: '/signin'
-        }}/>
-    )}/>
-
-    const protected_route = <Route {...rest} render={props => ( ( <Component {...props} /> ))}/>
-
-    const loading = <Loading />
-
-    const jwt = JWT.get_jwt();
-    
-    if(jwt['token'] === null || jwt['username'] === null){
-        return signin_route;
-    }
-    else {
-        axios.get(API.URI + 'api/v1/token/validate', {
-            headers: {
-                'Content-Type': 'application/json',
-                token: jwt['token'],
-                username: jwt['username']
-            },
-            mode: 'cors'
-        }).then( response => {
-            if(response.data['status'] === 'success'){
-                return protected_route
-            }                                            
-            else {
-                JWT.remove_jwt();
-                return signin_route;
+export default function requireAuth(ProtectedComponent)  {
+    class JWTAuthenticate extends Component {
+        componentWillMount() {                        
+            const jwt = JWT.get_jwt()
+            if(jwt['token'] !== null && jwt['username'] !== null)
+                this.props.validateToken({
+                    token: jwt['token'],
+                    username: jwt['username']                        
+                });
+            else
+                this.props.history.push('/signin');
+        }
+        render() {
+            if(this.props.auth.is_authenticated === true) {
+                return (
+                    <ProtectedComponent {...this.props} />
+                )
             }
-        }).catch(err => {
-            JWT.remove_jwt();
-            return signin_route;
-        })
-    }
-    return loading;
-}
+            else {
+                return (
+                    <Redirect to={{ pathname: '/signin' }}/>
+                )
+            }
+        }
+    }    
 
-export default JWTAuthenticate;
+    const mapStateToProps = (state) => {
+        return {
+            auth: state.auth,
+            user: state.user
+        }
+    };
+    
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            validateToken: (auth) => dispatch(validateToken(auth))
+        }
+    }
+
+    return connect(mapStateToProps, mapDispatchToProps)(JWTAuthenticate);
+}
