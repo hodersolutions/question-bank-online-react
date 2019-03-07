@@ -18,16 +18,17 @@ export const authenticateUser = (user) => {
             }
         ).then( response => {
             if(response.data['status'] === 'success') {
-                JWT.set_jwt(response.data['auth_token'], response.data['username']);
+                // Ask user if he/she is okay to save local cookies then save the token to localStorage by 
+                // JWT.set_jwt(response.data['auth_token'], response.data['username'])
                 dispatch({ type: AUTHENTICATE_USER, response: response.data });
             }
             else {
-                JWT.remove_jwt();
+                // Do this, JWT.remove_jwt(); if JWT.set_jwt() is done above
                 dispatch({ type: AUTHENTICATE_USER_ERROR, error: response.data });
             }
         }
         ).catch(error => {
-            JWT.remove_jwt();	
+            // Do this, JWT.remove_jwt(); if JWT.set_jwt() is done above
             dispatch({ type: AUTHENTICATE_USER_ERROR, error });
         });        
     }
@@ -44,6 +45,8 @@ export const validateToken = (auth) => {
             mode: 'cors'
         }).then( response => {
             if(response.data['status'] === 'success'){
+                response.data['auth_token'] = auth['token'];
+                response.data['username'] = auth['username']; 
                 dispatch({ type: AUTHENTICATE_USER, response: response.data });
             }                                            
             else {

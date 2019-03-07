@@ -12,13 +12,13 @@ import requireAuth from '../auth/JWTAuthentication';
 import UserDashboard from '../dashboard/UserDashboard';
 
 const Routes = () => (
-	<Switch>    	
-		<Route exact path='/signin' render={ props=> <SignIn {...props}/> } />
-    	<Route exact path='/signup' render={ props=> <SignUp {...props}/> } />
-		<Route exact path='/forgot/password' render={ props=> <ForgotPassword {...props}/> } />
-		<Route exact path='/user/home' render={ props=> <UserDashboard {...props}/> } />
+	<Switch>
+		<Route exact path='/' component={Dashboard} />
+		<Route exact path='/signin' component={SignIn} />
+    	<Route exact path='/signup' component={SignUp} />
+		<Route exact path='/forgot/password' component={ForgotPassword} />
 
-		<Route exact path='/' component={ requireAuth(Dashboard) } />
+		<Route exact path='/user/home' component={ requireAuth(UserDashboard) } />
 		<Route exact path='/module' component={ requireAuth(CreateModule) } />
       	<Route exact path='/question' component={ requireAuth(CreateQuestion) } />
 		<Route exact path='/question/show' component={ requireAuth(ShowQuestion) } />
