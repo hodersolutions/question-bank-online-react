@@ -85,7 +85,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authenticateUser: (auth) => dispatch(authenticateUser(auth))
+        authenticateUser: (user) => dispatch(authenticateUser(user))
     }
 }
 

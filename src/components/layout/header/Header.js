@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Header.css";
+import SignedOutLinks from './SignedOutLinks';
+import SignedInLinks from './SignedInLinks';
+import { connect } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
+	let userOptions;
+	if (props.auth.is_authenticated === true) {
+		userOptions = <SignedInLinks />
+	}
+	else {
+		userOptions = <SignedOutLinks />
+	}
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,24 +35,18 @@ const Header = () => {
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <div className="collapse navbar-collapse" id="navbarsOptions">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link to="/signin" className="nav-item nav-link">                    
-                    <span className="icon-text">LOGIN</span>
-                  </Link>
-                </li>
-                <li className="nav-item border-button">
-                  <Link to="/signup" className="nav-item nav-link">                    
-                    <span className="icon-text">JOIN US</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            { userOptions }
           </div>
         </nav>
       </div>
     );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth,
+		user: state.user
+	}
+};
+
+export default connect(mapStateToProps, null)(Header);

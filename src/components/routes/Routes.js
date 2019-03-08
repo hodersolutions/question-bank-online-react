@@ -10,6 +10,8 @@ import CreateModule from '../module/create/CreateModule';
 import NotFound from '../common/notfound/NotFound'
 import requireAuth from '../auth/JWTAuthentication';
 import UserDashboard from '../dashboard/UserDashboard';
+import UserProfile from '../auth/UserProfile';
+import SignOut from '../auth/SignOut';
 
 const Routes = () => (
 	<Switch>
@@ -18,7 +20,9 @@ const Routes = () => (
     	<Route exact path='/signup' component={SignUp} />
 		<Route exact path='/forgot/password' component={ForgotPassword} />
 
+		<Route exact path='/signout' component={requireAuth(SignOut)} />
 		<Route exact path='/user/home' component={ requireAuth(UserDashboard) } />
+		<Route exact path='/user/profile' component={ requireAuth(UserProfile) } />
 		<Route exact path='/module' component={ requireAuth(CreateModule) } />
       	<Route exact path='/question' component={ requireAuth(CreateQuestion) } />
 		<Route exact path='/question/show' component={ requireAuth(ShowQuestion) } />

@@ -1,4 +1,4 @@
-import { AUTHENTICATE_USER, AUTHENTICATE_USER_ERROR, SHOW_LOADING } from '../types/authTypes';
+import { AUTHENTICATE_USER, AUTHENTICATE_USER_ERROR, SHOW_LOADING, SIGNOUT_USER } from '../types/authTypes';
 
 const initState = {
     loading: false,    
@@ -14,7 +14,14 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: action.loading
-            }        
+            }
+        case SIGNOUT_USER:
+            return {
+                ...state,
+                token: action.auth['token'],
+                username: action.auth['username'],
+                is_authenticated: action.auth['is_authenticated']
+            }       
         case AUTHENTICATE_USER:
             return {
                 ...state,

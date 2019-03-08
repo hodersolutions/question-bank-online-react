@@ -2,7 +2,7 @@ import axios from 'axios';
 import API from '../../components/common/APIHelper';
 import JWT from '../../components/common/JWT';
 
-import { AUTHENTICATE_USER_ERROR, AUTHENTICATE_USER, SHOW_LOADING } from '../types/authTypes';
+import { AUTHENTICATE_USER_ERROR, AUTHENTICATE_USER, SHOW_LOADING, SIGNOUT_USER } from '../types/authTypes';
 
 export const authenticateUser = (user) => {
     return (dispatch, getState) => {
@@ -31,6 +31,12 @@ export const authenticateUser = (user) => {
             // Do this, JWT.remove_jwt(); if JWT.set_jwt() is done above
             dispatch({ type: AUTHENTICATE_USER_ERROR, error });
         });        
+    }
+}
+
+export const signOutUser = (auth) => {
+    return (dispatch, getState) => {
+        dispatch({ type: SIGNOUT_USER, auth });                
     }
 }
 
