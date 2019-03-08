@@ -1,0 +1,5 @@
+export const CREATE_MODULE = 'CREATE_MODULE';
+export const GET_MODULE = 'GET_MODULE';
+export const UPDATE_MODULE = 'UPDATE_MODULE';
+export const DELETE_MODULE = 'DELETE_MODULE';
+export const CREATE_MODULE_ERROR = 'CREATE_MODULE_ERROR';
