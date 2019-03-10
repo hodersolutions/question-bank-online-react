@@ -9,7 +9,7 @@ class Dashboard extends Component {
     const style = {
       'margin': '0px 0px 25px 15px' 
     }
-    if (this.props.auth.is_authenticated)
+    if (this.props.user.is_authenticated)
       	return <Redirect to='/user/home' />
     else {
     return (      
@@ -17,7 +17,7 @@ class Dashboard extends Component {
             <div className="row">
               	<div className="col col-centered wrapper">
                   	<h3 className="border-bottom mb-5 h3 mb-5 font-header">Recent Modules / Topics</h3>
-                  	<ModuleList modules={this.props.modules}  />                
+                  	<ModuleList modules={this.props.module}  />                
               	</div>
             </div>
             <div className="row">
@@ -34,8 +34,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-    	modules: state.module.modules,
-    	auth: state.auth
+    	module: state.module,
+    	user: state.user
 	}
 }
 

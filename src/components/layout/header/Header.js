@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const Header = (props) => {
 	let userOptions;
-	if (props.auth.is_authenticated === true) {
+	if (props.user.is_authenticated === true) {
 		userOptions = <SignedInLinks />
 	}
 	else {
@@ -44,7 +44,6 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		auth: state.auth,
 		user: state.user
 	}
 };

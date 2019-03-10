@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import JWT from '../common/JWT';
 
 import { connect } from 'react-redux';
-import { validateToken } from '../../store/actions/authAction';
+import { validateToken } from '../../store/actions/userAction';
 
 const JWTAuthenticate = ({component: Component, ...rest}) => {    
     const signin_route = <Route {...rest} render={props => ( <Redirect to={{

@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import './CreateModule.css';
-import Notifications, { notify } from 'react-notify-toast';
+import Notifications from 'react-notify-toast';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createModule } from '../../../store/actions/moduleActions';
 
 class CreateModule extends Component {
-    constructor() {
-        super();
-        this.state = {
-            module: '',
-            parent_module_id: '',
-            description: '',
-            creator_id: 1,
-            is_active: true
-        }
+    state = {
+        module: '',
+        parent_module_id: '',
+        description: '',
+        creator_id: '',
+        is_active: true
     }
-        
+    
+    componentDidMount() {
+        this.setState({
+            creator_id: this.props.user.user_entity.id
+        });        
+    }
+    
     handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -92,7 +95,6 @@ class CreateModule extends Component {
 const mapStateToProps = (state) => {
 	return {
     	module: state.module,
-        auth: state.auth,
         user: state.user
 	}
 }

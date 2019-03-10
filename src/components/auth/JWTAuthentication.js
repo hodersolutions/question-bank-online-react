@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { validateToken } from '../../store/actions/authAction';
+import { validateToken } from '../../store/actions/userActions';
 import JWT from '../../components/common/JWT';
 import Loading from '../common/loading/Loading';
 
@@ -9,29 +9,29 @@ export default function requireAuth(ProtectedComponent)  {
     class JWTAuthenticate extends Component {
         componentWillMount() {                        
             const jwt = JWT.get_jwt()
-            if (!this.props.auth.is_authenticated) {
-                this.props.auth.loading = true;
+            if (!this.props.user.is_authenticated) {
+                this.props.user.loading = true;
                 if (jwt['token'] !== null && jwt['username'] !== null)
                     this.props.validateToken({
                         token: jwt['token'],
                         username: jwt['username']                        
                     });
-                else if (this.props.auth.token !== null && this.props.auth.username !== null)
+                else if (this.props.user.token !== null && this.props.user.username !== null)
                     this.props.validateToken({
-                        token: this.props.auth.token,
-                        username: this.props.auth.username                     
+                        token: this.props.user.token,
+                        username: this.props.user.username                     
                     });
                 else
                     this.props.history.push('signin');
             }            
         }
         render() {
-            if (this.props.auth.is_authenticated === true) {
+            if (this.props.user.is_authenticated === true) {
                 return (
                     <ProtectedComponent {...this.props} />
                 )
             }
-            else if (this.props.auth.loading === true) {
+            else if (this.props.user.loading === true) {
                 return (
                     <Loading />
                 )
@@ -46,7 +46,6 @@ export default function requireAuth(ProtectedComponent)  {
 
     const mapStateToProps = (state) => {
         return {
-            auth: state.auth,
             user: state.user
         }
     };

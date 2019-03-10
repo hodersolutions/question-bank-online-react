@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Notifications, { notify } from 'react-notify-toast';
 
 import { connect } from 'react-redux';
-import { authenticateUser } from '../../store/actions/authAction';
+import { authenticateUser } from '../../store/actions/userActions';
 
 class SignIn extends Component {	
     constructor() {
@@ -34,13 +34,13 @@ class SignIn extends Component {
 		const options = {
 			zIndex: 200, top: '50px'
 		}		
-		if(this.props.auth.is_authenticated === true) {
+		if(this.props.user.is_authenticated === true) {
 			return <Redirect to='/user/home'/>;
 		}
 		else {				
-			if(this.props.auth.error !== null && this.props.auth.error.response.status === 401) {
-				notify.show(this.props.auth.error.response.data['message'], 'error', 3000, 'red');
-				this.props.auth.error = null;
+			if(this.props.user.error !== null && this.props.user.error.response.status === 401) {
+				notify.show(this.props.user.error.response.data['message'], 'error', 3000, 'red');
+				this.props.user.error = null;
 			}
 			return (
 				<div>
@@ -78,7 +78,7 @@ class SignIn extends Component {
 
 const mapStateToProps = (state, props) => {
 	return {
-		auth: state.auth,
+		user: state.user,
 		authProps: props
 	}
 };
