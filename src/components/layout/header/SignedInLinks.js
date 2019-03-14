@@ -12,7 +12,7 @@ const SignedInLinks = (props) => {
 						<span className="icon-text">Welcome, { props.user.username }</span>
 					</Link>
 					<div className="dropdown-menu" aria-labelledby="welcomeUser">
-						<Link className="dropdown-item" to='/user/profile'>
+						<Link className="dropdown-item" to='/profile'>
 							<img src={require("../../../static/images/settings.png")} className="icon" alt="profile"/>
 							<span className="dropdown-text">Profile Settings</span>
 						</Link>

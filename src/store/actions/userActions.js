@@ -19,7 +19,8 @@ export const updateUser = (user) => {
 }
 
 export const createUser = (user) => {
-    return (dispatch, getState) => {        
+    return (dispatch, getState) => {
+        dispatch({ type: SHOW_LOADING });           
         axios.post(API.URI + 'api/v1/users', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -41,6 +42,7 @@ export const createUser = (user) => {
 
 export const getUser = () => {
     return (dispatch, getState) => {
+        dispatch({ type: SHOW_LOADING });   
         const jwt = JWT.get_jwt();
         axios.get(API.URI + 'api/v1/users/username?username=' + jwt['username'], {
             headers: {
@@ -60,7 +62,7 @@ export const getUser = () => {
 
 export const authenticateUser = (user) => {
     return (dispatch, getState) => {
-        dispatch({ type: SHOW_LOADING, loading: true });
+        dispatch({ type: SHOW_LOADING });        
         axios.post(API.URI + 'api/v1/auth/login', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,12 +92,14 @@ export const authenticateUser = (user) => {
 
 export const signOutUser = (auth) => {
     return (dispatch, getState) => {
+        dispatch({ type: SHOW_LOADING });
         dispatch({ type: SIGNOUT_USER, auth });                
     }
 }
 
 export const validateToken = (auth) => {
-    return (dispatch, getState) => {        
+    return (dispatch, getState) => { 
+        dispatch({ type: SHOW_LOADING });       
         axios.post(API.URI + 'api/v1/token/validate', {
             headers: {
                 'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Card } from 'react-bootstrap';
 import './ModuleCard.css';
 
-class ModuleCard extends Component {
+export class ModuleCard extends Component {
     render() {
         return (
             <div className='card-container'>

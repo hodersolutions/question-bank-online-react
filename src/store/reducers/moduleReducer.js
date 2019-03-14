@@ -1,12 +1,11 @@
-import { CREATE_MODULE, CREATE_MODULE_ERROR, GET_MODULE, UPDATE_MODULE, DELETE_MODULE } from '../types/moduleTypes';
+import { CREATE_MODULE, CREATE_MODULE_ERROR, GET_MODULES, GET_MODULES_ERROR, UPDATE_MODULE, DELETE_MODULE, SHOW_LOADING } from '../types/moduleTypes';
 
 const initState = {
-    module: '',
-    parent_module_id: '',
-    is_active: true,
-    description: '',
-    creator_id: null,
-    is_created: false
+    response: null,
+    status: '',
+    modules: [],    
+    error: null,
+    loading: false    
 }
 
 const moduleReducer = (state = initState, action) => {
@@ -14,18 +13,51 @@ const moduleReducer = (state = initState, action) => {
         case CREATE_MODULE:
             return {
                 ...state,
-                is_created: true
-            }            
-        case CREATE_MODULE_ERROR:            
-            return {
-                ...state                
+                loading: false,
+                status: CREATE_MODULE,
+                response: action.response
             }
-        case GET_MODULE:
-            return state;
+        case CREATE_MODULE_ERROR:    
+            return {
+                ...state,
+                loading: false,
+                status: CREATE_MODULE_ERROR,
+                error: action.error
+            }
+        case GET_MODULES:
+            return {
+                ...state,
+                loading: false,
+                status: GET_MODULES,
+                modules: action.response.modules,
+                response: action.response
+            }
+        case GET_MODULES_ERROR:
+            return {
+                ...state,
+                loading: false,
+                status: GET_MODULES_ERROR,
+                error: action.error
+            }
         case UPDATE_MODULE:
-            return state;
+            return {
+                ...state,
+                loading: false,
+                status: UPDATE_MODULE,
+                response: action.response
+            }
+        case SHOW_LOADING:
+            return {
+                ...state,
+                loading: true            
+            }
         case DELETE_MODULE:
-            return state;
+            return {
+                ...state,
+                loading: false,
+                status: DELETE_MODULE,                
+                response: action.response
+            }
         default:
             return state;
     }

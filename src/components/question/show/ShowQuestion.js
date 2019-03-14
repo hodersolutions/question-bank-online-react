@@ -10,7 +10,7 @@ class ShowQuestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: 2,
+            id: 1,
             question: '',
             options: []    
         }

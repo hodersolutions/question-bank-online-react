@@ -35,7 +35,7 @@ class SignIn extends Component {
 			zIndex: 200, top: '50px'
 		}		
 		if(this.props.user.is_authenticated === true) {
-			return <Redirect to='/user/home'/>;
+			return <Redirect to='/home'/>;
 		}
 		else {				
 			if(this.props.user.error !== null && this.props.user.error.response.status === 401) {

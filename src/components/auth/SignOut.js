@@ -5,11 +5,7 @@ import {Redirect} from 'react-router-dom';
 
 class SignOut extends Component {
     componentWillMount() {
-        this.props.signOutUser({
-            token: null,
-            username: null,
-            is_authenticated: false
-        })
+        this.props.signOutUser()
     }
     render() {
         return (
@@ -20,7 +16,7 @@ class SignOut extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signOutUser: (auth) => dispatch(signOutUser(auth))
+        signOutUser: () => dispatch(signOutUser())
     }
 }
 
