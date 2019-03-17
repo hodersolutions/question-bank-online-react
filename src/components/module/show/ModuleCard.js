@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { Card } from 'react-bootstrap';
 import './ModuleCard.css';
+import { Link } from 'react-router-dom';
 
 export class ModuleCard extends Component {
     render() {
         return (
-            <div className='card-container'>
+            <Link to='/module/show' className='card-container'>
                 <Card>
                     <Card.Header>{this.props.id}. {this.props.module}</Card.Header>
                     <Card.Body>
@@ -19,7 +20,7 @@ export class ModuleCard extends Component {
                         </blockquote>
                     </Card.Body>
                 </Card>
-            </div>
+            </Link>
         )
     }
 }

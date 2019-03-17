@@ -1,6 +1,12 @@
 import axios from 'axios';
 import API from '../../components/common/APIHelper';
-import {CREATE_MODULE, CREATE_MODULE_ERROR, GET_MODULES, GET_MODULES_ERROR, SHOW_LOADING } from '../types/moduleTypes';
+import {CREATE_MODULE, 
+        CREATE_MODULE_ERROR, 
+        GET_MODULES, 
+        GET_MODULES_ERROR,
+        GET_MODULE_ERROR,
+        GET_MODULE, 
+        SHOW_LOADING } from '../types/moduleTypes';
 
 export const createModule = (module) => {    
     return (dispatch, getState) => {
@@ -45,5 +51,23 @@ export const getModules = (params) => {
 		}).catch(error => {			
             dispatch({ type: GET_MODULES_ERROR, error });
         });         
+    }
+}
+
+export const getModule = (id) => {
+    return (dispatch, getState) => {
+        dispatch({ type: SHOW_LOADING });
+        axios.get(API.URI + 'api/v1/modules?id=' + id, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors'    
+        }).then( response => {
+            var module_list = [];
+            module_list.push(response.data.module);
+            dispatch({ type: GET_MODULE, module: module_list });            
+        }).catch(error => {			
+            dispatch({ type: GET_MODULE_ERROR, error });
+        });
     }
 }

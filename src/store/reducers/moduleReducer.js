@@ -1,4 +1,4 @@
-import { CREATE_MODULE, CREATE_MODULE_ERROR, GET_MODULES, GET_MODULES_ERROR, UPDATE_MODULE, DELETE_MODULE, SHOW_LOADING } from '../types/moduleTypes';
+import { CREATE_MODULE, CREATE_MODULE_ERROR, GET_MODULE, GET_MODULE_ERROR, GET_MODULES, GET_MODULES_ERROR, UPDATE_MODULE, DELETE_MODULE, SHOW_LOADING } from '../types/moduleTypes';
 
 const initState = {
     response: null,
@@ -37,6 +37,28 @@ const moduleReducer = (state = initState, action) => {
                 ...state,
                 loading: false,
                 status: GET_MODULES_ERROR,
+                error: action.error
+            }
+        case GET_MODULE:
+            return {
+                ...state,
+                loading: false,
+                status: GET_MODULE,
+                modules: action.module,
+                response: action.response
+            }
+        case GET_MODULE_ERROR:
+            const empty = [{
+                'module' : '<---->',
+                'parent_module_id' : '<---->',
+                'description': '<---->',
+                'creator_id': '<---->',
+            }];
+            return {
+                ...state,
+                loading: false,
+                modules: empty,
+                status: GET_MODULE_ERROR,
                 error: action.error
             }
         case UPDATE_MODULE:
