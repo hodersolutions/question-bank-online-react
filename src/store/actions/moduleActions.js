@@ -54,10 +54,10 @@ export const getModules = (params) => {
     }
 }
 
-export const getModule = (id) => {
+export const getModule = (params) => {
     return (dispatch, getState) => {
         dispatch({ type: SHOW_LOADING });
-        axios.get(API.URI + 'api/v1/modules?id=' + id, {
+        axios.get(API.URI + 'api/v1/modules?id=' + params.id, {
             headers: {
                 'Content-Type': 'application/json'
             },

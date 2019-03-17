@@ -7,8 +7,8 @@ import { getModule } from '../../../store/actions/moduleActions';
 import { GET_MODULE_ERROR } from '../../../store/types/moduleTypes';
 
 export class ShowModule extends Component {  
-    componentDidMount() {        
-        this.props.getModule(1);
+    componentWillMount() {        
+        this.props.getModule({id: 1});
     }
 
     render() {
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getModule: (id) => dispatch(getModule(id))
+        getModule: (params) => dispatch(getModule(params))
     }
 }
 
