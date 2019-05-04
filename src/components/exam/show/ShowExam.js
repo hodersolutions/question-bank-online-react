@@ -84,7 +84,14 @@ export class ShowModule extends Component {
                                     alt="Add Question"					
                                     className='image-style'
                                 /><span className='add-question-link'>Add Question</span>
-                            </Link>                            
+                            </Link>
+                            <Link to="/exam" className="nav-item nav-link">                    
+                                <img
+                                    src={require("../../../static/images/add.png")}
+                                    alt="Add Exam"					
+                                    className='image-style'
+                                /><span className='add-question-link'>Add Exam</span>
+                            </Link>
                         </div>
                     </div>                    
                 </div>

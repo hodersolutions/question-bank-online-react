@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API from '../../components/common/APIHelper';
+import settings from '../../settings';
 import JWT from '../../components/common/JWT';
 
 import { CREATE_USER_SUCCESS,
@@ -21,7 +21,7 @@ export const updateUser = (user) => {
 export const createUser = (user) => {
     return (dispatch, getState) => {
         dispatch({ type: USER_SHOW_LOADING });           
-        axios.post(API.URI + 'api/v1/users', {
+        axios.post(settings.QUESTIONBANKAPI.url + 'api/v1/users', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'text/plain'                    
@@ -44,7 +44,7 @@ export const getUser = () => {
     return (dispatch, getState) => {
         dispatch({ type: USER_SHOW_LOADING });   
         const jwt = JWT.get_jwt();
-        axios.get(API.URI + 'api/v1/users/username?username=' + jwt['username'], {
+        axios.get(settings.QUESTIONBANKAPI.url + 'api/v1/users/username?username=' + jwt['username'], {
             headers: {
                 'Content-Type': 'application/json',
                 token: jwt['token'],
@@ -63,7 +63,7 @@ export const getUser = () => {
 export const authenticateUser = (user) => {
     return (dispatch, getState) => {
         dispatch({ type: USER_SHOW_LOADING });        
-        axios.post(API.URI + 'api/v1/auth/login', {
+        axios.post(settings.QUESTIONBANKAPI.url + 'api/v1/auth/login', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'text/plain'
@@ -100,7 +100,7 @@ export const signOutUser = (auth) => {
 export const validateToken = (auth) => {
     return (dispatch, getState) => { 
         dispatch({ type: USER_SHOW_LOADING });       
-        axios.post(API.URI + 'api/v1/token/validate', {
+        axios.post(settings.QUESTIONBANKAPI.url + 'api/v1/token/validate', {
             headers: {
                 'Content-Type': 'application/json',
                 token: auth['token'],

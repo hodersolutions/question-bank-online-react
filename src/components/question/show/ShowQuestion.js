@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import API from '../../common/APIHelper';
+import settings from '../../../settings';
 import OptionCard from './option/OptionCard';
 import renderHTML from 'react-render-html';
 import './ShowQuestion.css';
@@ -22,7 +22,7 @@ class ShowQuestion extends Component {
     
     componentDidMount() {
         this._isMounted = true;
-        axios.get(API.URI + 'api/v1/questions?id=' + this.state.id, {
+        axios.get(settings.QUESTIONBANKAPI.url + 'api/v1/questions?id=' + this.state.id, {
             headers: {
                 'Content-Type': 'application/json'
             },

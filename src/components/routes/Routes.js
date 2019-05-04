@@ -11,6 +11,7 @@ import NotFound from '../common/notfound/NotFound'
 import requireAuth from '../auth/JWTAuthentication';
 import UserDashboard from '../dashboard/UserDashboard';
 import UserProfile from '../auth/UserProfile';
+import CreateExam from '../exam/create/CreateExam';
 import SignOut from '../auth/SignOut';
 import Loading from "../common/loading/Loading";
 import ShowModule from '../module/show/ShowModule';
@@ -29,6 +30,7 @@ const Routes = () => (
 			<Route exact path='/home' component={ requireAuth(UserDashboard) } />
 			<Route exact path='/profile' component={ requireAuth(UserProfile) } />
 			<Route exact path='/module' component={ requireAuth(CreateModule) } />
+			<Route exact path='/exam' component={ requireAuth(CreateExam) } />
 			<Route exact path='/question' component={ requireAuth(CreateQuestion) } />
 			<Route exact path='/showquestion/:id' component={ requireAuth(ShowQuestion) } />
 			<Route exact path='/showmodule/:id' component={ requireAuth(ShowModule) } />

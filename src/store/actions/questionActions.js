@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API from '../../components/common/APIHelper';
+import settings from '../../settings';
 import {CREATE_QUESTION_SUCCESS, 
         CREATE_QUESTION_ERROR, 
         GET_QUESTIONS_SUCCESS, 
@@ -11,7 +11,7 @@ import {CREATE_QUESTION_SUCCESS,
 export const createQuestion = (question) => {    
     return (dispatch, getState) => {
         dispatch({ type: QUESTION_SHOW_LOADING });
-        axios.post(API.URI + 'api/v1/questions', {
+        axios.post(settings.QUESTIONBANKAPI.url + 'api/v1/questions', {
             headers: {
                 'Content-Type': 'application/form'                
             },
@@ -33,7 +33,7 @@ export const createQuestion = (question) => {
 export const getQuestions = (params) => {
     return (dispatch, getState) => {
         dispatch({ type: QUESTION_SHOW_LOADING });
-        var full_uri = API.URI + 'api/v1/questions'; 
+        var full_uri = settings.QUESTIONBANKAPI.url + 'api/v1/questions'; 
 		if (params.creator_id === '')
 			full_uri = full_uri + '/latest/' + params.count
 		else
@@ -55,7 +55,7 @@ export const getQuestions = (params) => {
 export const getQuestion = (params) => {
     return (dispatch, getState) => {
         dispatch({ type: QUESTION_SHOW_LOADING });
-        axios.get(API.URI + 'api/v1/questions?id=' + params.id, {
+        axios.get(settings.QUESTIONBANKAPI.url + 'api/v1/questions?id=' + params.id, {
             headers: {
                 'Content-Type': 'application/json'
             },

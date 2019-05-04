@@ -58,7 +58,7 @@ class UserDashboard extends Component {
 							src={require("../../static/images/add.png")}
 							alt="Add Module"					
 							style={ image_style }
-						/><span className='add-module-link'>Add Module</span>
+						/><span className='add-link'>Add Module</span>
 						</Link>
 					</div>
 				</div>
@@ -66,6 +66,13 @@ class UserDashboard extends Component {
 					<div className="col col-centered wrapper">
 						<h3 className="border-bottom mb-5 h3 mb-5 font-header">Recent Exams</h3>
 						<p style={ exams_style }>No Exams added recently...</p>
+						<Link to="/exam" className="nav-item nav-link">                    
+							<img
+								src={require("../../static/images/add.png")}
+								alt="Add Exam"					
+								className='image-style'
+							/><span className='add-link'>Add Exam</span>
+                        </Link>
 					</div>            
 				</div>
 			</div>

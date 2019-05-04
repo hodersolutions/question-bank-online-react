@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API from '../../components/common/APIHelper';
+import settings from '../../settings';
 import {CREATE_MODULE_SUCCESS, 
         CREATE_MODULE_ERROR, 
         GET_MODULES_SUCCESS, 
@@ -11,7 +11,7 @@ import {CREATE_MODULE_SUCCESS,
 export const createModule = (module) => {    
     return (dispatch, getState) => {
         dispatch({ type: MODULE_SHOW_LOADING });
-        axios.post(API.URI + 'api/v1/modules', {
+        axios.post(settings.QUESTIONBANKAPI.url + 'api/v1/modules', {
                 headers: {
                     'Content-Type': 'application/json',
                     'token': localStorage.getItem('token'),
@@ -35,7 +35,7 @@ export const createModule = (module) => {
 export const getModules = (params) => {
     return (dispatch, getState) => {
         dispatch({ type: MODULE_SHOW_LOADING });
-        var full_uri = API.URI + 'api/v1/modules'; 
+        var full_uri = settings.QUESTIONBANKAPI.url + 'api/v1/modules'; 
 		if (params.creator_id === '')
 			full_uri = full_uri + '/latest/' + params.count
 		else
@@ -57,7 +57,7 @@ export const getModules = (params) => {
 export const getModule = (params) => {
     return (dispatch, getState) => {
         dispatch({ type: MODULE_SHOW_LOADING });
-        axios.get(API.URI + 'api/v1/modules?id=' + params.id, {
+        axios.get(settings.QUESTIONBANKAPI.url + 'api/v1/modules?id=' + params.id, {
             headers: {
                 'Content-Type': 'application/json'
             },
